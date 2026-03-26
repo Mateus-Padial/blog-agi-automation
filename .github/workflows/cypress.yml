@@ -7,13 +7,13 @@ on:
     branches: [ main, develop ]
 
 jobs:
-  cypress-run:
+  cypress-file1:
     runs-on: ubuntu-latest
     
     strategy:
       matrix:
         node-version: [20.x]
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -27,19 +27,56 @@ jobs:
       - name: Install dependencies
         run: npm install
       
-      - name: Run Cypress tests
-        run: npm test
+      - name: Run Cypress Test - File 1
+        run: npx cypress run --spec "cypress/e2e/article_navigation.cy.js"
       
       - name: Upload screenshots on failure
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-screenshots
+          name: cypress-screenshots-file1
           path: cypress/screenshots/
       
       - name: Upload videos
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-videos
+          name: cypress-videos-file1
+          path: cypress/videos/
+
+  cypress-file2:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Run Cypress Test - File 2
+        run: npx cypress run --spec "cypress/e2e/search_articles.cy.js"
+      
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots-file2
+          path: cypress/screenshots/
+      
+      - name: Upload videos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos-file2
           path: cypress/videos/
