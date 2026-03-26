@@ -3,7 +3,7 @@ import BlogElements from '../elements/BlogElements';
 class BlogPage {
   visitBlog() {
     cy.visit('https://blogdoagi.com.br/', { failOnStatusCode: false });
-    Cypress.on('uncaught:exception', () => false); 
+    Cypress.on('uncaught:exception', () => false);
   }
 
   verifyPageLoaded() {
@@ -30,14 +30,14 @@ class BlogPage {
   }
 
   verifyNoResults() {
-    cy.wait(2000)
-    cy.get(BlogElements.searchOpen()).click()
-    cy.get(BlogElements.searchField()).first().type('{enter}')
+    cy.wait(5000)
+    cy.get(BlogElements.searchOpen(), { timeout: 10000 }).click()
+    cy.get(BlogElements.searchField(), { timeout: 10000 }).first().type('{enter}')
     cy.contains('termoinexistente123456', { timeout: 10000 })
       .should('be.visible');
   }
 
-  verifySearchResults(searchTerm) { 
+  verifySearchResults(searchTerm) {
     cy.get('body').should('be.visible');
     cy.get(BlogElements.searchField()).first().type('{enter}', { force: true });
     cy.get('h1', { timeout: 15000 }).should('contain', searchTerm);
