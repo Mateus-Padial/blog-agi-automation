@@ -1,0 +1,32 @@
+{
+  "name": "blog-agi-automation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run",
+    "test:headed": "cypress run --headed",
+    "test:chrome": "cypress run --browser chrome",
+    "test:firefox": "cypress run --browser firefox",
+    "test:edge": "cypress run --browser edge",
+    "test:open": "cypress open",
+    "test:spec": "cypress run --spec",
+    "test:search": "cypress run --spec 'cypress/e2e/search_articles.cy.js'",
+    "test:navigation": "cypress run --spec 'cypress/e2e/article_navigation.cy.js'",
+    "test:all": "cypress run --e2e",
+    "test:record": "cypress run --record"
+  },
+  "keywords": [
+    "cypress",
+    "automation",
+    "testing",
+    "qa",
+    "blog",
+    "agibank"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "Automated testing suite for Blog do Agi using Cypress",
+  "devDependencies": {
+    "cypress": "^15.13.0"
+  }
+}
