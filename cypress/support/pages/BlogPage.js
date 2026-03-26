@@ -39,7 +39,7 @@ class BlogPage {
 
   verifySearchResults(searchTerm) {
     cy.get('body').should('be.visible');
-    cy.get(BlogElements.searchField()).first().type('{enter}', { force: true });
+    cy.get(BlogElements.searchField()).invoke('css', 'visibility', 'visible').first().type('{enter}', { force: true });
     cy.get('h1', { timeout: 15000 }).should('contain', searchTerm);
   }
 
