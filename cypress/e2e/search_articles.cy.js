@@ -13,7 +13,7 @@ describe('Blog do Agi - Pesquisa de Artigos', () => {
     BlogPage.verifySearchResults(termoBusca);
   });
   
-  it.skip('Cenário 2: Deve exibir mensagem de erro ao pesquisar termo inexistente', () => {
+  it('Cenário 2: Deve exibir mensagem de erro ao pesquisar termo inexistente', () => {
     const termoInexistente = 'termoinexistente123456';
     BlogPage.searchFor(termoInexistente);
     BlogPage.verifyNoResults();
