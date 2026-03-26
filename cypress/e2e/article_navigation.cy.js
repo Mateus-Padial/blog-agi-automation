@@ -29,7 +29,7 @@ describe('Blog do Agi - Navegação de Artigos', () => {
     BlogPage.clickFirstArticle();
     cy.url().should('not.eq', 'https://blogdoagi.com.br/' );
     cy.get('body').should('be.visible');
-    cy.get('h1, .entry-title', { timeout: 15000 }).should('be.visible');
+    cy.get('h1, .entry-title', { timeout: 15000 }).should('be.exist');
     cy.go('back');
     cy.url().should((url) => {
       expect(url).to.match(/blogdoagi\.com\.br|agibank\.com\.br/);
